@@ -10,6 +10,7 @@ if umur < 18:
     print("Maaf", nama, "anda belum bisa meminjam kendaraan")
 else:
     ktp = int(input("Masukkan Nomor KTP Anda : "))
+    no_tlp = int(input("Masukkan no telefon : "))
     k_mobil = input("Kategori Mobil [4/6/8 orang] : ")
     if k_mobil == "4" :
         kapasitasmobil = "4 orang"
@@ -28,14 +29,27 @@ else:
 
     total = (jam*harga)
 
+    tra = input("masukkan cara transaksi [cash/non tunai]:")
+
+    if tra == "cash":
+        tran = "cash"
+        ttl=total
+    else:
+        tran = "non tunai"
+        ttl=(total+(total*0.02))
+
+
     print("-------------------------------")
     print("RENTAL MOBIL ABCD")
     print("-------------------------------")
     print("Masukkan Nama Anda            : "+str(nama))
     print("Masukkan Umur Anda            : "+str(umur))
+    print("Masukkan No Telefon           : " + str(no_tlp))
     print("Masukkan Nomor KTP Anda       : "+str(ktp))
     print("Kapasitas Mobil               : "+str(k_mobil))
     print("Harga                         : ",+(harga))
-    print("Potongan yang didapat        : ",+(diskon))
+    print("Potongan yang didapat         : ",+(diskon))
     print("-------------------------------")
-    print("Total Bayar                  : ",+(total))
+    print("Total Bayar                   : ",+(total))
+    print("transaksi                     : ", str(tran))
+    print("Total setelah admin           :", str(ttl))
