@@ -3,53 +3,79 @@ print("RENTAL MOBIL ABCD")
 print("-------------------------------")
 
 #Input
-nama = input("Masukkan Nama Anda : ")
-umur = int(input("Masukkan Umur Anda : "))
+nama = input("Masukkan Nama Anda: ")
+umur = int(input("Masukkan Umur Anda: "))
 
 if umur < 18:
     print("Maaf", nama, "anda belum bisa meminjam kendaraan")
 else:
-    ktp = int(input("Masukkan Nomor KTP Anda : "))
-    no_tlp = int(input("Masukkan no telefon : "))
-    k_mobil = input("Kategori Mobil [4/6/8 orang] : ")
-    if k_mobil == "4" :
-        kapasitasmobil = "4 orang"
-        harga = 300000
-    elif k_mobil == "6" :
-        kapasitasmobil = "6 orang"
-        harga = 350000
-    else:
-        kapasitasmobil = "8 orang"
+    ktp = input("Masukkan nomor KTP Anda: ")
+    no_tlp = int(input("Masukkan no telepon: "))
+    email=input("Masukan alamat E-mail anda : ")
+    k_mobil = int(input("Jumlah penumpang (maksimal 12 penumpang): "))
+    if k_mobil == (1-5):
+        kapasitasmobil = "maksimal 5 orang"
         harga = 500000
-    jam = int(input("Masukkan Durasi Peminjaman (dalam hari): "))
-    if jam > 6:
-        diskon = (jam*harga)*0.1
+    elif k_mobil == (5-7):
+        kapasitasmobil = "maksimal 7 orang"
+        harga = 750000
     else:
-        diskon = 0
-
-    total = (jam*harga)
-
-    tra = input("masukkan cara transaksi [cash/non tunai]:")
-
-    if tra == "cash":
-        tran = "cash"
-        ttl=total
+        kapasitasmobil = "maksimal 12 orang"
+        harga = 1050000
+    if k_mobil >12:
+        print("Maksimal penumpang adalah 12 orang")
     else:
-        tran = "non tunai"
-        ttl=(total+(total*0.02))
+        hari = int(input("Masukkan Durasi Peminjaman (dalam hari): "))
+        if hari > 14:
+            print("Mohon maaf", nama, "untuk peminjaman lebih dari 14 hari,")
+            print("dimohon untuk datang langsung untuk detail lebih lanjutnya")
+        else:
+            subtotal=(hari*harga)
+            if hari > 6:
+                diskon = (hari * harga) * 0.05
+            else:
+                diskon = 0
+            total = (hari * harga) - diskon
 
+            tra = input("Masukkan cara transaksi [c untuk cash/ t untuk non tunai]: ")
 
-    print("-------------------------------")
-    print("RENTAL MOBIL ABCD")
-    print("-------------------------------")
-    print("Masukkan Nama Anda            : "+str(nama))
-    print("Masukkan Umur Anda            : "+str(umur))
-    print("Masukkan No Telefon           : " + str(no_tlp))
-    print("Masukkan Nomor KTP Anda       : "+str(ktp))
-    print("Kapasitas Mobil               : "+str(k_mobil))
-    print("Harga                         : ",+(harga))
-    print("Potongan yang didapat         : ",+(diskon))
-    print("-------------------------------")
-    print("Total Bayar                   : ",+(total))
-    print("transaksi                     : ", str(tran))
-    print("Total setelah admin           :", str(ttl))
+            if tra == "c":
+                tran = "Cash"
+                ttl = total
+            else:
+                tran = "Non Tunai"
+                ttl = (total + (total * 0.02))
+
+            adm=(total*0.02)
+
+            word='*'*len(ktp)
+
+            import locale
+
+            locale.setlocale(locale.LC_ALL, 'de_DE')
+
+            print("-------------------------------")
+            print("RENTAL MOBIL ABCD")
+            print("-------------------------------")
+            print("Nama                          : ", str(nama))
+            print("Umur                          : ", str(umur))
+            print("No telepon                    : ", str(no_tlp))
+            print("KTP anda                      : ", str(word))
+            print("Alamat email                  : ", str(email))
+            print("Kapasitas Mobil               : ", str(k_mobil))
+            print("Lama peminjaman               : ", str(hari), "hari")
+            print("Harga                         : ", "Rp. ", str(locale.format_string('%.2f', harga, True)))
+            print("Subtotal                      : ", "Rp. ", str(locale.format_string('%.2f', subtotal, True)))
+            print("Potongan yang didapat         : ", "Rp. ", str(locale.format_string('%.2f', diskon, True)))
+            print("-------------------------------")
+            print("Total Bayar                   : ", "Rp. ", str(locale.format_string('%.2f', total, True)))
+            print("-------------------------------")
+            print("transaksi                     : ", str(tran))
+            print("Biaya admin                   : ", "Rp. ", str(locale.format_string('%.2f', adm, True)))
+            print("Total setelah admin           : ", "Rp. ", str((locale.format_string('%.2f', ttl, True))))
+            print()
+            print()
+            print("Transaksi ini hanya berlaku selama 3 hari")
+            print("Bila transaksi tidak diproses dalam 3 hari,")
+            print("maka transaksi dibatalkan")
+            print("Terima kasih")
